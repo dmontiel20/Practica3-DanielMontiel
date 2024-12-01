@@ -18,7 +18,15 @@ Para activar esta funcion necesitare implementar el boton implementado en el joy
 
 Para cambiar entre admin y cliente usare un boton. Aqui entra en accion el uso de las interrupciones, que nos evitara estar haciendo una espera activa.
 
+Como no puedo asociar dos interrupcions a un mismo pin, usare una en modo CHANGE. Cada vez que salte guardare en una variable "millis()". Me surge el problema de que no se cuando el CHANGE es de terminar de pulsar. Para solucinarlo pondre un condicional para tomar una muestra de tiempo cuando este en LOW y otra en HIGH y que cuando la muestra que tome en HIGH me active un estado para poder calcular el tiempo transcurrido.
 
+El menu admin sera parecido al menu de los cafes. Lo he empezado a hacer con un switch pero no he conseguido implementarlo porque no era capaz de entrar en todos los casos. Lo he acabado haciendo con condicionales.
+
+En este apartado, donde mas he tenido problemas es en la maquina de estados que usa para la opcion de cambiar el precio al cafe. Cuando he seleccionado el cafe que quiero modificar enntro en un while por lo que la funcion que me dice si debo retroceder al menu de cafes debe estar dentro de este bucle y la estaba poniendo en "get_back()".
+
+Y para poder reiniciar el sistema al pulsar 2-3 segundos he usado un bool activado por el boton para que llame a la funcion "boot_system()".
+
+Por ultimo, para poder implementar el Watchdog, he usado uno pricipal de 4 segundos para cuando no uso ningun delay en cada iteracion del programa y cuando existe algun delay hago un reset para que empieze a contar desde ahi y doy un valor de espera lo mas aproximado posible al delay, y al acabar retomo el valor original de WATCHDOG.
 
 
 
